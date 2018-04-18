@@ -11,15 +11,15 @@ export default class Body extends React.Component{
       fetch('/api/get/all').then((res)=>{
         return res.json();
       }).then(users =>{
+
+
           this.setState({
-            user: u
+            user: users
           })
 
 
 
-
       });
-      console.log(this.state.user);
 
 
   }
@@ -35,7 +35,7 @@ export default class Body extends React.Component{
                   <div>
 
                     <form >
-                        <label >Seach BY name</label>
+                        <label htmlfor="">Seach BY name</label>
                         <input type="text" name="" className="u-full-width" onChange={this.props.ChangeName}  />
                         <button type="button" className=" btn"  name="button">Search</button>
                     </form>
@@ -52,13 +52,10 @@ export default class Body extends React.Component{
               </div>
               <div>
                 <div className="row">
-
-                    {this.state.user.map(u =>{
-                        <UserDiv name={this.state.u.name} age={this.state.u.age} location={this.state.u.location} gender={this.state.u.gender} job={this.state.u.job} />
-                    })}
-
-
-
+                    {this.state.user.map( u => {
+                      // body...
+                      <UserDiv name={this.state.u.name} age={this.state.u.age} location={this.state.u.location} gender={this.state.u.gender} job={this.state.u.job} />
+                    });}
                 </div>
               </div>
           </div>
