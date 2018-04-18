@@ -55,7 +55,7 @@ export default class Body extends React.Component{
                     {this.state.user.map( u => {
                       // body...
                       <UserDiv name={this.state.u.name} age={this.state.u.age} location={this.state.u.location} gender={this.state.u.gender} job={this.state.u.job} />
-                    });}
+                    })}
                 </div>
               </div>
           </div>
