@@ -16,7 +16,7 @@ export default class Body extends React.Component{
           this.setState({
             user: users
           })
-
+          console.log(this.state.user);
 
 
       });
@@ -53,8 +53,7 @@ export default class Body extends React.Component{
               <div>
                 <div className="row">
                     {this.state.user.map( u => {
-                      // body...
-                      <UserDiv name={u.name} age={u.age} location={u.location} gender={u.gender} job={u.job} />
+                      return  <UserDiv name={u.name} age={u.age} location={u.location} gender={u.gender} job={u.job} />;
                     })}
                 </div>
               </div>
