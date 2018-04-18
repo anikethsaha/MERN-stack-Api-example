@@ -9,14 +9,15 @@ class Layout extends React.Component{
     this.handleChangeName = this.handleChangeName.bind(this);
     this.state={inputkey:""};
   }
+
  handleChangeName(e){
 
    this.setState({
      inputkey:e.target.value
    })
-   
 
-  }
+}
+
   render(){
     return (
       <section>
