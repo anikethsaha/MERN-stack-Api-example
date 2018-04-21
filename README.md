@@ -17,7 +17,7 @@ A simple api to get fake user
       6  Go to **http://localhost:8080/** to see the page
    ##### With flux( I am using redux.js )
       1. Simply paste the project including the **redux(option)** folder
-      2. replace the app.js and bundle.js in project directory with the same named file from the redux folder and also change the                    components/body.js file with the redux/body.js
+      2. Replace the components folder, the bundle.js file replace the app.js file with main.js file from the redux(optional) folder, add the store.js file in the root dir(project dir) , replace the webpack.config.jss file too
       3. After pasting the project and changing the above changes  run **npm install** to install all the dependencies 
       4 In one terminal run **nodemon server.js** to start the server .
       5 before running the server just compile the webpack with **npm run webpack** though I will update the bundle.js file as much as              possible
