@@ -5,6 +5,8 @@ A simple api to get fake user
    Add fake user ,
    Fetch them in Your Code ,
    More Feactures like JWT auth token,Reporting Comming Soon
+   -- JWT auth is Added now . Token Creation link `/w/login` , Protected Route `/w/home` .
+   Add the Middleware `verifyTokenHeader` to protect any route
 ## How TO Use
    Download or clone the whole project 
    I have created the app using two ways **(With and Without flux(Redux.js)** architecture and you can use either of them
