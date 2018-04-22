@@ -1,3 +1,6 @@
+![alt text](https://github.com/anikethsaha/MERN-stack-Api-BoilerPlate/blob/master/readMeImg2.PNG)
+![alt text](https://github.com/anikethsaha/MERN-stack-Api-BoilerPlate/blob/master/readMeImg3PNG)
+
 # MERN Stack  (Flux architecture Please read the how to use)
 
 A simple api to get fake user
