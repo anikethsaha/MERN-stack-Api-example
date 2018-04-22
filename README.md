@@ -11,7 +11,7 @@ A simple api to get fake user
    Download or clone the whole project 
    I have created the app using With flux(Redux.js frameworks) architecture 
    
- ## With flux( I am using redux.js )
+ ## How to install and use
  
       1. Clone the project or download the zip
       
