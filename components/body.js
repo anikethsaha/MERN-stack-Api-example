@@ -1,30 +1,68 @@
 import React from 'react';
 import UserForm from './userform';
 import UserDiv from './userdiv';
-export default class Body extends React.Component{
+import { connect} from  'react-redux';
+
+
+ class Body extends React.Component{
   constructor(props){
-    super();
+
+    super(props);
+
+    this.handleChangeName = this.handleChangeName.bind(this);
     this.handleRemoveFakeUserPanel = this.handleRemoveFakeUserPanel.bind(this);
     this.state={user:[]};
   }
-  componentDidMount() {
-      fetch('/api/get/all').then((res)=>{
+  componentWillMount(){
+      fetch('/api/get/all',{
+        headers : {
+        'content-Type': 'application/json',
+
+       }
+      }).then((res)=>{
+
         return res.json();
       }).then(users =>{
-
-
-          this.setState({
-            user: users
-          })
-          console.log(this.state.user);
+        this.props.onFetchPArticular(users);
 
 
       });
 
 
   }
+  handleChangeName(e){
+    const data ={
+      name : e.target.value
+    }
+    fetch('/api/get',
+    {
+           body:JSON.stringify(data),
+           method : "POST",
+           headers :{
+             'content-type' : 'application/json'
+           }
+    }
+  ).then(res => {
+   return  res.json()
+  }
+  ).then(users => {
+
+      this.props.onFetchPArticular(users);
+
+  });
+
+
+    this.setState({
+      inputkey:e.target.value
+    })
+
+
+ }
+
+
+
   handleRemoveFakeUserPanel(e){
-    console.log(e);
+
   $('.right_adduser_panel').toggleClass('open');
   }
   render(){
@@ -36,10 +74,10 @@ export default class Body extends React.Component{
 
                     <form >
                         <label htmlfor="">Seach BY name</label>
-                        <input type="text" name="" className="u-full-width" onChange={this.props.ChangeName}  />
+                        <input type="text" name="" className="u-full-width" onChange={this.handleChangeName}  />
                         <button type="button" className=" btn"  name="button">Search</button>
                     </form>
-                    <h3>Result for {this.props.p_status} {this.props.s_key}</h3>
+                    <h3>Result for  {this.props.s_key}</h3>
                   </div>
               </div>
               <div className="right_adduser_panel">
@@ -52,7 +90,8 @@ export default class Body extends React.Component{
               </div>
               <div>
                 <div className="row">
-                    {this.state.user.map( u => {
+
+                    {this.props.users.map(u => {
                       return  <UserDiv name={u.name} age={u.age} location={u.location} gender={u.gender} job={u.job} />;
                     })}
                 </div>
@@ -62,3 +101,25 @@ export default class Body extends React.Component{
     )
   }
 }
+//
+const mapStateToProps = state => {
+  return {
+    users : state.user
+  }
+}
+const mapDispatchToProps = dispatch => {
+      return {
+        onFetchPArticular: users => {
+          dispatch({
+            type :"FETCH_ALL",
+            data : users
+          })
+        }
+
+    }
+
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Body)
