@@ -34,27 +34,27 @@ import { connect} from  'react-redux';
     const data ={
       name : e.target.value
     }
-    fetch('/api/get',
-    {
-           body:JSON.stringify(data),
-           method : "POST",
-           headers :{
-             'content-type' : 'application/json'
-           }
-    }
-  ).then(res => {
-   return  res.json()
-  }
-  ).then(users => {
+        fetch('/api/get',
+        {
+               body:JSON.stringify(data),
+               method : "POST",
+               headers :{
+                 'content-type' : 'application/json'
+               }
+        }
+      ).then(res => {
+       return  res.json()
+      }
+      ).then(users => {
 
-      this.props.onFetchPArticular(users);
+          this.props.onFetchPArticular(users);
 
-  });
+      });
 
 
-    this.setState({
-      inputkey:e.target.value
-    })
+        this.setState({
+          inputkey:e.target.value
+        })
 
 
  }
@@ -85,10 +85,10 @@ import { connect} from  'react-redux';
                 <div className="right_panel_details">
 
                     <h3>Write Anything fake But valid <strong>&#9786;</strong></h3>
-                </div>
+                </div  >
                 <UserForm />
               </div>
-              <div>
+              <div className="p-center">
                 <div className="row">
 
                     {this.props.users.map(u => {
