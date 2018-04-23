@@ -72,25 +72,39 @@ app.post('/api/get',(req,res)=>{
 
 app.post('/w/login',(req,res) => {
   console.log(req.body.name);
-  const userData = {
-    name :req.body.name,
-    password : "password"
-  }
-  jwt.sign({user : userData}, 'fakeuser',(err,token) =>{
-
-    const response = {
-        success: true,
-        token: `Bearer ${token}`
-      }
-      // console.log(response.token);
-    if(err){
-      res.sendStatus(400);
+  if(req.body.email == "easy" && req.body.password == "easy"){
+    const userData = {
+      name :req.body.name,
+      password : req.body.password
     }
+    jwt.sign({user : userData}, 'fakeuser',(err,token) =>{
 
-    //setting the auth header
-    res.setHeader('authorization', response.token);
-    res.json("success logined");
-  })
+      const response = {
+          success: true,
+          token: `Bearer ${token}`
+
+        }
+        // console.log(response.token);
+      if(err){
+        res.sendStatus(400);
+      }
+
+      //setting the auth header
+      res.setHeader('authorization', response.token);
+      res.json({
+        status : "success",
+        message : "Login successfull",
+        token : response.token
+
+      });
+    })
+  }else {
+    res.json({
+      status : "Failed",
+      message : " Not authorized"
+    });
+  }
+
 });
 
 
@@ -118,8 +132,12 @@ app.post('/w/home',verifyTokenHeader,(req,res) => {
 
 
 
-app.post('/api/user/insert',(req,res)=>{
-
+app.post('/api/user/insert',verifyTokenHeader,(req,res)=>{
+  const response = {
+    status : "",
+    error : [],
+    message : ""
+  };
   var user = new User();
     user.name = req.body.name;
     user.job = req.body.job;
@@ -128,11 +146,13 @@ app.post('/api/user/insert',(req,res)=>{
 
     user.save((err,user) =>{
       if (err) {
-        // console.error(err);
-        res.json(err);
+          response.status = "failed";
+          response.error = error;
+          res.json(response);
       }
-      console.log(user);
-      res.json(user);
+          response.status = "Success";
+          response.message = "Fake User successfully Inserted";
+          res.json(response);
     })
 
 })
