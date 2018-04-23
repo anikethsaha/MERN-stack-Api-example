@@ -22,7 +22,7 @@ export default  class Layout extends React.Component{
     return (
       <Provider store = {this.storeval}>
         <section>
-            <Header />
+            // <Header />
 
             <Body  s_key={this.state.inputkey}  />
 
